@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>Shopping Carts</h1>
+                <div class="container">
+                    <ul>
+                        <% carts.forEach(function(cart) { %>
+                            <li>Cart <%= cart.id %> Average: $<%= cart.cartAverage %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

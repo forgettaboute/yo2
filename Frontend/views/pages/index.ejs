@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+
+            <h1>Click Below to Generate Fake Carts!</h1>
+                    <h5>Format will be as follows:</h5>
+                <ul>
+                    <li>
+                        Cart <strong>1</strong> Average: $<strong>xxx</strong>
+                    </li>
+                    <li>
+                        Cart <strong>2</strong> Average: $<strong>xxx</strong>
+                    </li>
+                </ul>
+
+            <form action="/carts" method="get" class="jumbotron">
+            <input type="submit" value="Click For Carts">
+            </form>
+
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

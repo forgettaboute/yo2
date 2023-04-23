@@ -1,0 +1,1 @@
+'/api/cargo/all'
