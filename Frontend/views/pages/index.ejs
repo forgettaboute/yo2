@@ -2,44 +2,62 @@
 <html lang="en">
     <head>
         <%- include('../partials/head'); %>
+        <title> Arctarus Interstellar Spaceport - Home </title>
     </head>
-    <body>
+    <body style="background-image: url('/img/background.jpg'); background-size: 100%; background-repeat: no-repeat;">
 
         <header>
-            <%- include('../partials/header'); %>
+            <%- include('../partials/headerIndex'); %>
         </header>
 
-        <main style="background-image: url('/img/background.jpg'); background-size: cover ; background-position: center;">
-            <div class="container">
-                <div class="p-5 text-center" style="height: 400px;">
-                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height: 400px;">
-                    <div class="d-flex justify-content-center align-items-center h-100">
-                        <div class="text-white">
-                        <h4 class="mb-3">Interstellar Cargo Management, Made Easy!</h4>
-                        <a class="btn btn-outline-light btn-lg" href="/login" role="button"> Login </a>
+        <div style="min-height: 300vh; margin-bottom: 80px;">
+            <main>
+                <div class="container">
+                    <div class="p-5 text-center" style="height: 400px;">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height: 400px;">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="text-white">
+                            <h4 class="mb-3">Space Cargo Management, Made Easy!</h4>
+                            <a class="btn btn-outline-light btn-lg" href="/login" role="button"> Login </a>
+                            </div>
+                        </div>
                         </div>
                     </div>
-                    </div>
                 </div>
-            </div>
-            <!-- Background Mask -->
+                <!-- Background Mask -->
 
-            <div class="container my-5">
-                <h1>Interstellar Cargo, Made Easy!</h1>
-                <h5>Format will be as follows:</h5>
-                <ul>
-                    <li>
-                        Cart <strong>1</strong> Average: $<strong>xxx</strong>
-                    </li>
-                    <li>
-                        Cart <strong>2</strong> Average: $<strong>xxx</strong>
-                    </li>
-                </ul>
-                <form action="/login" method="get">
-                    <input type="submit" value="CART ME" class="btn btn-primary"></input>
-                </form>
-            </div>
-        </main>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+                <div class="container my-5">
+                    <h1>Rated #1 Space Cargo Management Solution in the Milky Way!</h1>
+                    <h5>You can rest easy knowing you'll be able to easily manage:</h5>
+                    <ul>
+                        <li>
+                            Captains
+                        </li>
+                        <li>
+                            Spaceships
+                        </li>
+                        <li>
+                            Cargo, of course!
+                        </li>
+                    </ul>
+                    <form action="/carts" method="get">
+                        <input type="submit" value="CART ME" class="btn btn-primary"></input>
+                    </form>
+                </div>
+            </main>
+        </div>
 
         <footer>
             <%- include('../partials/footer'); %>
