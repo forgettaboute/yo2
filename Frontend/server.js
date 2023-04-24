@@ -1,28 +1,45 @@
-// load the things we need
-var express = require('express');
+// Loading the things we need! :)
+var express = require('express'); // Serves our pages to a specified port
 var app = express();
+const axios = require('axios'); // Makes external API calls into our frontend server
 const bodyParser  = require('body-parser');
 
-// required module to make calls to a REST API
-const axios = require('axios');
-
 app.use(bodyParser.urlencoded());
+app.use(express.static('Frontend'));
 
-// set the view engine to ejs
+// Set the view engine to ejs & defines views directory
+app.set('views', './Frontend/views');
 app.set('view engine', 'ejs');
 
-// index page 
+// Index page 
 app.get('/', function(req, res) {
 
-    // use res.render to load up an ejs view file
-    res.render('/Frontend/views/pages/index.ejs', {
+    // Using res.render to load respective ejs viewpage file
+    res.render('pages/index.ejs', {
     });
 });
 
-// carts page
+// Scheduled Cargo Overview page
+app.get('/login', function(req, res) {
+    data = "data";
+
+    res.render('pages/login.ejs', {
+        data: data
+    });
+});
+
+// Scheduled Cargo Overview page
 app.get('/scheduledCargo', function(req, res) {
-    // use res.render to load up an ejs view file
-    axios.get('127.0.0.1:5000/api/cargo/all')
+    data = "data";
+
+    res.render('pages/scheduledCargo.ejs', {
+        data: data
+    });
+});
+
+// Carts page (FOR TESTING)
+app.get('/carts', function(req, res) {
+    axios.get('https://dummyjson.com/carts')
     .then((response)=>{
         var cartData = response.data.carts;
         carts = []

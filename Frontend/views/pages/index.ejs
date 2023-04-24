@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include('../partials/head'); %>
-</head>
-<body class="container">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <body>
 
-    <header>
-        <%- include('../partials/header'); %>
-    </header>
+        <header>
+            <%- include('../partials/header'); %>
+        </header>
 
-    <main>
-        <div class="jumbotron">
+        <main style="background-image: url('/img/background.jpg'); background-size: cover ; background-position: center;">
+            <div class="container">
+                <div class="p-5 text-center" style="height: 400px;">
+                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height: 400px;">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white">
+                        <h4 class="mb-3">Interstellar Cargo Management, Made Easy!</h4>
+                        <a class="btn btn-outline-light btn-lg" href="/login" role="button"> Login </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Background Mask -->
 
-            <h1>Click Below to Generate Fake Carts!</h1>
-                    <h5>Format will be as follows:</h5>
+            <div class="container my-5">
+                <h1>Interstellar Cargo, Made Easy!</h1>
+                <h5>Format will be as follows:</h5>
                 <ul>
                     <li>
                         Cart <strong>1</strong> Average: $<strong>xxx</strong>
@@ -22,17 +35,15 @@
                         Cart <strong>2</strong> Average: $<strong>xxx</strong>
                     </li>
                 </ul>
+                <form action="/login" method="get">
+                    <input type="submit" value="CART ME" class="btn btn-primary"></input>
+                </form>
+            </div>
+        </main>
 
-            <form action="/carts" method="get" class="jumbotron">
-            <input type="submit" value="Click For Carts">
-            </form>
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
 
-        </div>
-    </main>
-
-    <footer>
-        <%- include('../partials/footer'); %>
-    </footer>
-
-</body>
+    </body>
 </html>
