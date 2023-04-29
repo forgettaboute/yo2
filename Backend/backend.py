@@ -47,12 +47,10 @@ def addCaptain():
 #Read captain
 @app.route('/api/captain/all', methods=['GET'])
 def allCaptains():
-    if auth['auth'] == True:
-        captains = executeReadQuery(connection, "SELECT * FROM cis3368.captain")
+    captains = executeReadQuery(connection, "SELECT * FROM cis3368.captain")
 
-        return jsonify(captains)
-    else:
-        return 'SECURITY ERROR' #never give away too many details of what went wrong
+    return jsonify(captains)
+
 
 #Update captain
 @app.route('/api/captain/update', methods=['PUT'])
@@ -90,12 +88,10 @@ def addSpaceship():
 #Read spaceship
 @app.route('/api/spaceship/all', methods=['GET'])
 def allSpaceships():
-    if auth['auth'] == True:
-        spaceships = executeReadQuery(connection, "SELECT * FROM cis3368.spaceship")
+    spaceships = executeReadQuery(connection, "SELECT * FROM cis3368.spaceship")
 
-        return jsonify(spaceships)
-    else:
-        return 'SECURITY ERROR' #never give away too many details of what went wrong
+    return jsonify(spaceships)
+
 
 #Update spaceship
 @app.route('/api/spaceship/update', methods=['PUT'])
@@ -135,12 +131,9 @@ def addCargo():
 #Read cargo
 @app.route('/api/cargo/all', methods=['GET'])
 def allCargo():
-    if auth['auth'] == True:
-        cargo = executeReadQuery(connection, "SELECT * FROM cis3368.cargo")
+    cargo = executeReadQuery(connection, "SELECT * FROM cis3368.cargo")
 
-        return jsonify(cargo)
-    else:
-        return 'SECURITY ERROR' #never give away too many details of what went wrong
+    return jsonify(cargo)
 
 #Update cargo
 @app.route('/api/cargo/update', methods=['PUT'])

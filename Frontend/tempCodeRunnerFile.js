@@ -1,32 +1,6 @@
-// load the things we need
-var express = require('express');
-var app = express();
-const bodyParser  = require('body-parser');
-
-// required module to make calls to a REST API
-const axios = require('axios');
-
-app.use(bodyParser.urlencoded());
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
-// index page 
-app.get('/', function(req, res) {
-
-    // use res.render to load up an ejs view file
-    res.render('pages/index', {
-    });
-});
-
-// carts page
-app.get('/scheduledCargo', function(req, res) {
-    // use res.render to load up an ejs view file
-    axios.get('127.0.0.1:5000/api/cargo/all')
-    .then((response)=>{
         var cartData = response.data.carts;
-        carts = []
-        console.log(cartData)
+        carts = [];
+        console.log(cartData);
 
         // loops carts
         for (let i = 0; i < cartData.length; i++) {
@@ -43,14 +17,3 @@ app.get('/scheduledCargo', function(req, res) {
         }
 
         console.log(carts)
-
-        res.render('pages/carts', {
-            cartData: cartData,
-            carts: carts
-        });
-    });
-});
-
-
-app.listen(8080);
-console.log('Front-End server running on port 8080! ^.^');

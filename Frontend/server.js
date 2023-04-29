@@ -19,54 +19,80 @@ app.get('/', function(req, res) {
     });
 });
 
-// Scheduled Cargo Overview page
+// Login page
 app.get('/login', function(req, res) {
-    data = "data";
 
     res.render('pages/login.ejs', {
-        data: data
     });
+});
+
+// login verification
+app.post('/processlogin', function(req, res) {
+    var usernameInput = request.data.username;
+    var passwordInput = request.data.password;
+    var data = {
+        username: usernameInput,
+        password: passwordInput
+    }
+    const headers = {
+        'content-type': 'text/json'
+    }
+
+    axios.get('127.0.0.1:5000/api/login', data, headers)
+    .then((response)=>{
+        console.log("RESPONSE RECEIVED: ", res);
+    })
+    .catch((err) => {
+        console.log("AXIOS ERROR: ", err);
+    })
 });
 
 // Scheduled Cargo Overview page
 app.get('/scheduledCargo', function(req, res) {
-    data = "data";
+    axios.get('127.0.0.1:5000/api/cargo/all')
+    .then((response)=>{
+        const cargo = response.data;
+        console.log(cargo)
 
-    res.render('pages/scheduledCargo.ejs', {
-        data: data
-    });
+        res.render('pages/scheduledCargo.ejs', {cargo: cargo})
+
+    .catch((error) => {
+        console.log(error)
+        res.status(500).send('Error fetching employee data');
+    })
+    })
 });
 
 // Carts page (FOR TESTING)
-app.get('/carts', function(req, res) {
-    axios.get('https://dummyjson.com/carts')
-    .then((response)=>{
-        var cartData = response.data.carts;
-        carts = []
-        console.log(cartData)
-
-        // loops carts
-        for (let i = 0; i < cartData.length; i++) {
-            let total = 0;
-
-            // calculates avg and appends to respectice cart
-            for (let j = 0; j < cartData[i].products.length; j++) {
-                total += cartData[i].products[j].total;
-            }
-            cartData[i].cartAverage = total / cartData[i].totalQuantity;
-            carts.push({"id": cartData[i].id, "cartAverage": cartData[i].cartAverage});
-
-            console.log(cartData[i].cartAverage);
-        }
-
-        console.log(carts)
-
-        res.render('pages/carts', {
-            cartData: cartData,
-            carts: carts
-        });
-    });
-});
+//app.get('/carts', function(req, res) {
+//    axios.get('https://dummyjson.com/carts')
+//   .then((response)=>{
+//        var cartData = response.data.carts;
+//        carts = [];
+//        console.log(cartData);
+//
+//        // loops carts
+//        for (let i = 0; i < cartData.length; i++) {
+//            let total = 0;
+//
+//            // calculates avg and appends to respectice cart
+//            for (let j = 0; j < cartData[i].products.length; j++) {
+//                total += cartData[i].products[j].total;
+//            }
+//            cartData[i].cartAverage = total / cartData[i].totalQuantity;
+//            carts.push({"id": cartData[i].id, "cartAverage": cartData[i].cartAverage});
+//
+//            console.log(cartData[i].cartAverage);
+//        }
+//
+//       console.log(carts)
+//
+//        res.render('pages/carts', {
+//            cartData: cartData,
+//            carts: carts
+//        });
+//    });
+//});
 
 
 app.listen(8080);

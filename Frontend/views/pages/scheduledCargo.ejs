@@ -13,13 +13,29 @@
 
         <main>
             <div class="container-fluid my-5">
-                <h1>Shopping Carts</h1>
                 <div class="container">
-                    <ul>
-                        <% carts.forEach(function(cart) { %>
-                            <li>Cart <%= cart.id %> Average: $<%= cart.cartAverage %></li>
-                        <% }); %>
-                    </ul>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Cargo ID</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Departure Time</th>
+                            <th>Arrival Time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for (var i = 0; i < cargo.length; i++) { %>
+                            <tr>
+                            <td><%= cargo[i].id %></td>
+                            <td><%= cargo[i].origin %></td>
+                            <td><%= cargo[i].destination %></td>
+                            <td><%= cargo[i].departureTime %></td>
+                            <td><%= cargo[i].arrivalTime %></td>
+                            </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
@@ -30,3 +46,33 @@
 
     </body>
 </html>
+
+<!--
+                    <form id="todo-form">
+                    <input type="text" placeholder="New TODO..." id="todo-input" />
+                    <button type="submit">Add +</button>
+                </form>
+            
+                <div class="lanes">
+                    <div class="swim-lane" id="todo-lane">
+                    <h3 class="heading">Cargo</h3>
+            
+                    <p class="task" draggable="true">Get groceries</p>
+                    <p class="task" draggable="true">Feed the dogs</p>
+                    <p class="task" draggable="true">Mow the lawn</p>
+                    </div>
+            
+                    <div class="swim-lane">
+                    <h3 class="heading">Doing</h3>
+            
+                    <p class="task" draggable="true">Binge 80 hours of Game of Thrones</p>
+                    </div>
+            
+                    <div class="swim-lane">
+                    <h3 class="heading">Done</h3>
+            
+                    <p class="task" draggable="true">
+                        Watch video of a man raising a grocery store lobster as a pet
+                    </p>
+                    </div>
+-->
