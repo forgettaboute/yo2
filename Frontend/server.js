@@ -1,7 +1,7 @@
 // Loading the things we need! :)
 var express = require('express'); // Serves our pages to a specified port
 var app = express();
-const axios = require('axios'); // Makes external API calls into our frontend server
+const axios = require('axios').create({baseURL: "http://127.0.0.1:5000"}); // Makes external API calls into our frontend server
 const bodyParser  = require('body-parser');
 
 app.use(bodyParser.urlencoded());
@@ -10,6 +10,11 @@ app.use(express.static('Frontend'));
 // Set the view engine to ejs & defines views directory
 app.set('views', './Frontend/views');
 app.set('view engine', 'ejs');
+
+//Randome stuffs
+const headers = {
+    'content-type': 'application/json'
+}
 
 // Index page 
 app.get('/', function(req, res) {
@@ -34,11 +39,8 @@ app.post('/processlogin', function(req, res) {
         username: usernameInput,
         password: passwordInput
     }
-    const headers = {
-        'content-type': 'text/json'
-    }
 
-    axios.get('127.0.0.1:5000/api/login', data, headers)
+    axios.get('/api/login', data, headers)
     .then((response)=>{
         console.log("RESPONSE RECEIVED: ", res);
     })
@@ -49,50 +51,51 @@ app.post('/processlogin', function(req, res) {
 
 // Scheduled Cargo Overview page
 app.get('/scheduledCargo', function(req, res) {
-    axios.get('127.0.0.1:5000/api/cargo/all')
+    axios.get('/api/cargo/all')
     .then((response)=>{
-        const cargo = response.data;
-        console.log(cargo)
-
-        res.render('pages/scheduledCargo.ejs', {cargo: cargo})
-
-    .catch((error) => {
-        console.log(error)
-        res.status(500).send('Error fetching employee data');
+        const cargoList = response.data;
+        res.render('pages/scheduledCargo.ejs', { cargoList });
     })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error retrieving scheduled cargo data');
     })
 });
 
-// Carts page (FOR TESTING)
-//app.get('/carts', function(req, res) {
-//    axios.get('https://dummyjson.com/carts')
-//   .then((response)=>{
-//        var cartData = response.data.carts;
-//        carts = [];
-//        console.log(cartData);
-//
-//        // loops carts
-//        for (let i = 0; i < cartData.length; i++) {
-//            let total = 0;
-//
-//            // calculates avg and appends to respectice cart
-//            for (let j = 0; j < cartData[i].products.length; j++) {
-//                total += cartData[i].products[j].total;
-//            }
-//            cartData[i].cartAverage = total / cartData[i].totalQuantity;
-//            carts.push({"id": cartData[i].id, "cartAverage": cartData[i].cartAverage});
-//
-//            console.log(cartData[i].cartAverage);
-//        }
-//
-//       console.log(carts)
-//
-//        res.render('pages/carts', {
-//            cartData: cartData,
-//            carts: carts
-//        });
-//    });
-//});
+app.post('/addCargo', function(req, res) {
+    cargo = {
+        'weight': req.body.weight,
+        'cargotype': req.body.cargotype,
+        'departure': req.body.departure,
+        'arrival': req.body.arrival,
+        'shipid': req.body.shipid
+    }
+
+    axios.post('/api/cargo/add', {cargo})
+    .then(function(response) {
+
+        res.render('pages/scheduledCargo.ejs', { });
+    });
+});
+
+app.post('/updCargo', function(req, res) {
+    var id = req.body.id
+
+    res.render('pages/scheduledCargo.ejs', {});
+});
+
+app.post('/delCargo', function(req, res) {
+    cargo = {
+        'id': req.body.id
+    }
+    console.log(cargo)
+
+    axios.post('/api/cargo/delete', {cargo: cargo}, )
+    .then(function(response) {
+
+        res.render('pages/scheduledCargo.ejs', { });
+    });
+});
 
 
 app.listen(8080);

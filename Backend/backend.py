@@ -147,7 +147,7 @@ def updCargo():
     try:
         spaceship = executeReadQuery(connection, "SELECT id FROM cis3368.ship WHERE id = %s" % (shipid))
     except:
-        return "Captain with that ID does not exist"
+        return "Cargo with that ID does not exist"
     else:    
         executeQuery(connection, "UPDATE cis3368.cargo SET departure = '%s' WHERE id = %s" % (departure, idToUpdate))
         executeQuery(connection, "UPDATE cis3368.cargo SET arrival = '%s' WHERE id = %s" % (arrival, idToUpdate))

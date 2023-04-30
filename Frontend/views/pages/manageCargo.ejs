@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+        <title> Scheduled Cargo </title>
+        <style>
+            .cargo-lane {
+                min-height: 200px;
+                width: 45%;
+                padding: 10px;
+                border: 1px solid #000;
+                float: left;
+                margin-right: 10px;
+            }
+            
+            .cargo-card {
+                padding: 10px;
+                background-color: #f0f0f000;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+
+    <body >
+
+        <header>
+            <%- include('../partials/header'); %>
+        </header>
+
+        <main>
+            <div class="container my-5">
+                <h3 style="text-align: center;"> Add New Cargo </h3>
+                <form action="/addCargo" method="POST">
+                    <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                        <input
+                            type="text"
+                            id="cargotype"
+                            name="cargotype"
+                            class="form-control"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                            autocomplete="off"
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example1"
+                            style="margin-left: 0px"
+                            >Cargo Type</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 68.8px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 68.8px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                        <input
+                            type="number"
+                            id="weight"
+                            name="weight"
+                            class="form-control"
+                            autocomplete="off"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example2"
+                            style="margin-left: 0px"
+                            >Weight</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 50px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 50px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+    
+                    <!-- Departure Date -->
+                    <div class="row mb-4">
+                        <div class="col">
+                        <div class="form-outline mb-4">
+                        <input
+                            type="text"
+                            id="departure"
+                            name="departure"
+                            class="form-control"
+                            autocomplete="off"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example3"
+                            style="margin-left: 0px"
+                            >Departure Date</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 98.4px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 98.4px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                        </div>
+        
+                        <!-- Arrival Date -->
+                        <div class="col">
+                        <div class="form-outline mb-4">
+                        <input
+                            type="text"
+                            id="arrival"
+                            name="arrival"
+                            class="form-control"
+                            autocomplete="off"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example4"
+                            style="margin-left: 0px"
+                            >Arrival Date</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 75px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 75px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block mb-4"> Add Cargo </button>
+                </form>
+
+                <hr my-5>
+
+                <h3 style="text-align: center;"> Update Existing Cargo </h3>
+                <form action="/updCargo" method="POST">
+                    <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                        <input
+                            type="number"
+                            id="id"
+                            name="id"
+                            class="form-control"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                            autocomplete="off"
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example1"
+                            style="margin-left: 0px"
+                            >Cargo ID</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 60px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 60px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                        <input
+                            type="number"
+                            id="shipid"
+                            name="shipid"
+                            class="form-control"
+                            autocomplete="off"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example2"
+                            style="margin-left: 0px"
+                            >New Ship # (or same)</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 130px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 130px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+    
+                    <!-- Departure Date -->
+                    <div class="row mb-4">
+                        <div class="col">
+                        <div class="form-outline mb-4">
+                        <input
+                            type="text"
+                            id="departure"
+                            name="departure"
+                            class="form-control"
+                            autocomplete="off"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example3"
+                            style="margin-left: 0px"
+                            >Departure Date</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 98.4px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 98.4px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                        </div>
+        
+                        <!-- Arrival Date -->
+                        <div class="col">
+                        <div class="form-outline mb-4">
+                        <input
+                            type="text"
+                            id="arrival"
+                            name="arrival"
+                            class="form-control"
+                            autocomplete="off"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example4"
+                            style="margin-left: 0px"
+                            >Arrival Date</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 75px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 75px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+    
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4"> Update Cargo </button>
+                </form>
+
+                <hr my-5>
+
+                <h3 style="text-align: center;"> Delete Existing Cargo </h3>
+                <form action="/delCargo" method="POST">
+                    <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                        <input
+                            type="number"
+                            id="id"
+                            name="id"
+                            class="form-control"
+                            style="
+                            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAUBJREFUOBGVVE2ORUAQLvIS4gwzEysHkHgnkMiEc4zEJXCMNwtWTmDh3UGcYoaFhZUFCzFVnu4wIaiE+vvq6+6qTgthGH6O4/jA7x1OiCAIPwj7CoLgSXDxSjEVzAt9k01CBKdWfsFf/2WNuEwc2YqigKZpK9glAlVVwTTNbQJZlnlCkiTAZnF/mePB2biRdhwHdF2HJEmgaRrwPA+qqoI4jle5/8XkXzrCFoHg+/5ICdpm13UTho7Q9/0WnsfwiL/ouHwHrJgQR8WEwVG+oXpMPaDAkdzvd7AsC8qyhCiKJjiRnCKwbRsMw9hcQ5zv9maSBeu6hjRNYRgGFuKaCNwjkjzPoSiK1d1gDDecQobOBwswzabD/D3Np7AHOIrvNpHmPI+Kc2RZBm3bcp8wuwSIot7QQ0PznoR6wYSK0Xb/AGVLcWwc7Ng3AAAAAElFTkSuQmCC');
+                            background-repeat: no-repeat;
+                            background-attachment: scroll;
+                            background-size: 16px 18px;
+                            background-position: 98% 50%;
+                            "
+                            autocomplete="off"
+                        />
+                        <label
+                            class="form-label"
+                            for="form6Example1"
+                            style="margin-left: 0px"
+                            >Cargo ID</label
+                        >
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 60px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        <div class="form-notch">
+                            <div
+                            class="form-notch-leading"
+                            style="width: 9px"
+                            ></div>
+                            <div
+                            class="form-notch-middle"
+                            style="width: 60px"
+                            ></div>
+                            <div class="form-notch-trailing"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4"> Delete Cargo </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+
+    </body>
+</html>
+
+<!--
+                    <form id="todo-form">
+                    <input type="text" placeholder="New TODO..." id="todo-input" />
+                    <button type="submit">Add +</button>
+                </form>
+            
+                <div class="lanes">
+                    <div class="swim-lane" id="todo-lane">
+                    <h3 class="heading">Cargo</h3>
+            
+                    <p class="task" draggable="true">Get groceries</p>
+                    <p class="task" draggable="true">Feed the dogs</p>
+                    <p class="task" draggable="true">Mow the lawn</p>
+                    </div>
+            
+                    <div class="swim-lane">
+                    <h3 class="heading">Doing</h3>
+            
+                    <p class="task" draggable="true">Binge 80 hours of Game of Thrones</p>
+                    </div>
+            
+                    <div class="swim-lane">
+                    <h3 class="heading">Done</h3>
+            
+                    <p class="task" draggable="true">
+                        Watch video of a man raising a grocery store lobster as a pet
+                    </p>
+                    </div>
+-->
